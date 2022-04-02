@@ -1,0 +1,385 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://res/slime-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://res/smallHpBar.png" type="Texture" id=3]
+[ext_resource path="res://res/smallHp.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27, 15.875 )
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "damaged_left"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "damaged_left"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "damaged_right"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "damaged_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=27]
+blend_point_0/node = SubResource( 23 )
+blend_point_0/pos = Vector2( -1, 1 )
+blend_point_1/node = SubResource( 24 )
+blend_point_1/pos = Vector2( -1, -1 )
+blend_point_2/node = SubResource( 25 )
+blend_point_2/pos = Vector2( 1, 1 )
+blend_point_3/node = SubResource( 26 )
+blend_point_3/pos = Vector2( 1, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+blend_point_0/node = SubResource( 2 )
+blend_point_0/pos = Vector2( -1, 1 )
+blend_point_1/node = SubResource( 3 )
+blend_point_1/pos = Vector2( -1, -1 )
+blend_point_2/node = SubResource( 4 )
+blend_point_2/pos = Vector2( 1, 1 )
+blend_point_3/node = SubResource( 5 )
+blend_point_3/pos = Vector2( 1, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "move_left"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "move_left"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "move_right"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "move_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=11]
+blend_point_0/node = SubResource( 7 )
+blend_point_0/pos = Vector2( -1, 1 )
+blend_point_1/node = SubResource( 8 )
+blend_point_1/pos = Vector2( -1, -1 )
+blend_point_2/node = SubResource( 9 )
+blend_point_2/pos = Vector2( 1, 1 )
+blend_point_3/node = SubResource( 10 )
+blend_point_3/pos = Vector2( 1, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Damaged/node = SubResource( 27 )
+states/Damaged/position = Vector2( 260, 180 )
+states/Idle/node = SubResource( 6 )
+states/Idle/position = Vector2( 210, 91 )
+states/Move/node = SubResource( 11 )
+states/Move/position = Vector2( 377, 91 )
+transitions = [ "Idle", "Move", SubResource( 12 ), "Move", "Idle", SubResource( 13 ), "Idle", "Damaged", SubResource( 28 ), "Damaged", "Idle", SubResource( 29 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 80 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Slime-Sheet:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "damaged_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 48, 51 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "damaged_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 48, 51 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "idle_left"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.025, 0.7375, 1.3375 ),
+"transitions": PoolRealArray( 1, 1, 4.28709 ),
+"update": 0,
+"values": [ 80, 84, 85 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "idle_right"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75, 1.35 ),
+"transitions": PoolRealArray( 1, 1, 4.28709 ),
+"update": 0,
+"values": [ 80, 84, 85 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "move_left"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 64, 70 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "move_right"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Slime-Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 64, 70 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Slime-Sheet:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="CircleShape2D" id=21]
+radius = 615.02
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 27, 15.5 )
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( 2 )
+
+[node name="Slime-Sheet" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+flip_h = true
+hframes = 16
+vframes = 8
+frame = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 15.875 )
+shape = SubResource( 1 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 14 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 15 )
+parameters/Damaged/blend_position = Vector2( -0.429952, -0.2 )
+parameters/Idle/blend_position = Vector2( -0.462158, -0.0344827 )
+parameters/Move/blend_position = Vector2( -0.557166, 0.155172 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 16 )
+anims/damaged_left = SubResource( 30 )
+anims/damaged_right = SubResource( 31 )
+anims/idle_left = SubResource( 17 )
+anims/idle_right = SubResource( 18 )
+anims/move_left = SubResource( 19 )
+anims/move_right = SubResource( 20 )
+
+[node name="Vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+visible = false
+shape = SubResource( 21 )
+
+[node name="TimeMapRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -30, 0 )
+collision_mask = 4
+
+[node name="PlayerRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -30, 0 )
+
+[node name="htibox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="htibox"]
+position = Vector2( 3, 15.5 )
+shape = SubResource( 22 )
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = -30.0
+margin_top = -7.0
+margin_right = 34.0
+margin_bottom = -2.0
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+
+[connection signal="body_entered" from="Vision" to="." method="_on_Vision_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_Vision_body_exited"]
+[connection signal="body_entered" from="htibox" to="." method="_on_htibox_body_entered"]

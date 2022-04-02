@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/Texture2.tsx-bbce5c95a08792a12d8230d4d186f618.res"
+
+[deps]
+
+source_file="res://res/Texture2.tsx"
+dest_files=[ "res://.import/Texture2.tsx-bbce5c95a08792a12d8230d4d186f618.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""

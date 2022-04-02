@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://res/MenuBackground.jpg" type="Texture" id=1]
+[ext_resource path="res://res/Title.png" type="Texture" id=2]
+[ext_resource path="res://scenes/StartMenu.gd" type="Script" id=3]
+[ext_resource path="res://res/MenuButton.tres" type="Theme" id=4]
+
+[node name="StartMenu" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -289.0
+margin_top = -269.0
+margin_right = 290.0
+margin_bottom = -176.0
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = 160.0
+margin_right = 96.0
+margin_bottom = 280.0
+
+[node name="Start" type="Button" parent="Control/VBoxContainer"]
+margin_right = 204.0
+margin_bottom = 42.0
+focus_mode = 0
+theme = ExtResource( 4 )
+action_mode = 0
+text = "Start"
+flat = true
+
+[node name="Settings" type="Button" parent="Control/VBoxContainer"]
+margin_top = 46.0
+margin_right = 204.0
+margin_bottom = 88.0
+focus_mode = 0
+theme = ExtResource( 4 )
+action_mode = 0
+text = "Settings"
+flat = true
+
+[node name="Quit" type="Button" parent="Control/VBoxContainer"]
+margin_top = 92.0
+margin_right = 204.0
+margin_bottom = 134.0
+focus_mode = 0
+theme = ExtResource( 4 )
+action_mode = 0
+text = "Quit"
+flat = true
+
+[node name="Label" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -73.0
+margin_top = -144.0
+margin_right = 73.0
+margin_bottom = -128.0
+text = "alpha 0.000000000001"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1280, 720 )
+
+[node name="MenuBackground" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 640, 360 )
+texture = ExtResource( 1 )
+
+[connection signal="pressed" from="Control/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
