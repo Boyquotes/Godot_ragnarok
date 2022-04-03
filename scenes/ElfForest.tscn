@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://res/sounds/Level1.mp3" type="AudioStream" id=1]
+[ext_resource path="res://scenes/Level1Label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/CanvasLayer.gd" type="Script" id=3]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Sign.tscn" type="PackedScene" id=8]
@@ -15,10 +17,11 @@
 [node name="TileMap" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, 256 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Interface" type="CanvasLayer" parent="."]
 layer = 0
+script = ExtResource( 3 )
 
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 7 )]
+[node name="GUI" parent="Interface" instance=ExtResource( 7 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.0
@@ -27,6 +30,14 @@ margin_right = -8.0
 margin_bottom = 0.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Level1Label" parent="Interface" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_right = 192.0
+
+[node name="Timer" type="Timer" parent="Interface"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 96, 160 )
@@ -52,3 +63,5 @@ position = Vector2( 672, 96 )
 stream = ExtResource( 1 )
 volume_db = -15.0
 autoplay = true
+
+[connection signal="timeout" from="Interface/Timer" to="Interface" method="_on_Timer_timeout"]

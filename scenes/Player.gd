@@ -16,8 +16,8 @@ var immunity_time = 1
 
 onready var bullet_handler = get_parent().get_node("bulletHandler")
 onready var current_bullet_type = bullet_handler.bulletType.normal
-onready var hp_bar = get_parent().get_node("CanvasLayer/GUI/HpBar")
-onready var bullet_bar = get_parent().get_node("CanvasLayer/GUI/BulletGUI")
+onready var hp_bar = get_parent().get_node("Interface/GUI/HpBar")
+onready var bullet_bar = get_parent().get_node("Interface/GUI/BulletGUI")
 
 onready var animation = $AnimationTree
 onready var anim_state_machine = animation.get("parameters/playback")

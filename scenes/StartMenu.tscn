@@ -71,7 +71,7 @@ margin_left = -73.0
 margin_top = -144.0
 margin_right = 73.0
 margin_bottom = -128.0
-text = "alpha 0.000000000001"
+text = "alpha 0.00000001"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
