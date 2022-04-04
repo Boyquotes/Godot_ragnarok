@@ -38,6 +38,8 @@ margin_left = -192.0
 margin_right = 192.0
 
 [node name="Timer" type="Timer" parent="Interface"]
+one_shot = true
+autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 96, 160 )

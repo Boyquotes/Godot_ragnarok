@@ -1,18 +1,15 @@
 extends CanvasLayer
 
-func _ready():
-	pass # Replace with function body.
-	
-func _on_Start_pressed():
+func _enter_tree() -> void:
+	layer = 1
+
+func _on_Start_pressed() -> void:
 	get_parent().game_start()
 	layer = -1
+
+func _on_Settings_pressed() -> void:
 	pass # Replace with function body.
 
 
-func _on_Settings_pressed():
-	pass # Replace with function body.
-
-
-func _on_Quit_pressed():
+func _on_Quit_pressed() -> void:
 	get_tree().quit()
-	pass # Replace with function body.

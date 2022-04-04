@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://res/MenuBackground.jpg" type="Texture" id=1]
-[ext_resource path="res://res/Title.png" type="Texture" id=2]
+[ext_resource path="res://res/menu/MenuBackground.jpg" type="Texture" id=1]
+[ext_resource path="res://res/menu/Title.png" type="Texture" id=2]
 [ext_resource path="res://scenes/StartMenu.gd" type="Script" id=3]
-[ext_resource path="res://res/MenuButton.tres" type="Theme" id=4]
+[ext_resource path="res://res/UI/MenuButton.tres" type="Theme" id=4]
 
 [node name="StartMenu" type="CanvasLayer"]
 script = ExtResource( 3 )

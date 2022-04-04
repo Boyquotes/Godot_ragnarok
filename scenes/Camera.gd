@@ -14,5 +14,5 @@ func _ready():
 onready var player = get_parent().get_node("Player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta) -> void:
 	position = lerp(position, player.position, 0.1)

@@ -7,7 +7,7 @@ extends Sprite
 
 onready var text = $Control/Label
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	pass # Replace with function body.
 
 
@@ -16,9 +16,9 @@ func _ready():
 #	pass
 
 
-func _on_Control_mouse_entered():
+func _on_Control_mouse_entered() -> void:
 	text.visible = true
 
 
-func _on_Control_mouse_exited():
+func _on_Control_mouse_exited() -> void:
 	text.visible = false

@@ -1,7 +1,4 @@
 extends Control
-
-func _ready():
-	pass # Replace with function body.
 	
-func hide():
+func hide() -> void:
 	$animation.play("fade_out")

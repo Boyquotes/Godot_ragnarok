@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://res/texture all 1.2.png" type="Texture" id=1]
+[ext_resource path="res://res/tileMap/texture all 1.2.png" type="Texture" id=1]
 
 [sub_resource type="TileSet" id=1]
 0/name = "texture all 1.2.png 0"

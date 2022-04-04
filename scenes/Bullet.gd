@@ -10,19 +10,19 @@ var livetime = 5
 var deleting = false
 var damage = 10
 
-func _init():
+func _init() -> void:
 	livetime = 5
 	damage = 10
 
-func _ready():
+func _ready() -> void:
 	pass
 	
-func _process(delta):
+func _process(delta) -> void:
 	time += delta
 	if(time >= livetime || deleting):
 		get_parent().remove_child(self)
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(body) -> void:
 	var test = body.collision_layer
 	if (collision_mask == bullet_mask.friendly):
 		if (body.collision_layer != 1):

@@ -9,10 +9,7 @@ enum bulletType {
 	big
 }
 
-func _ready():
-	pass
-
-func normal_settings(bullet, position, direction, friendly):
+func normal_settings(bullet, position, direction, friendly) -> void:
 	bullet.position = position
 	add_child(bullet)
 	bullet.gravity_scale = 0
@@ -22,7 +19,7 @@ func normal_settings(bullet, position, direction, friendly):
 	else:
 		bullet.collision_mask = Bullet.bullet_mask.agressive
 
-func createBullet(bullet_type, position, direction, friendly):
+func createBullet(bullet_type, position, direction, friendly) -> void:
 	match(bullet_type):
 		bulletType.normal:
 			var bullet = normalBullet.instance()

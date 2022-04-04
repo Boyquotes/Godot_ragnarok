@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://res/Sign.tres" type="Theme" id=1]
-[ext_resource path="res://res/sign.png" type="Texture" id=2]
+[ext_resource path="res://res/UI/Sign.tres" type="Theme" id=1]
+[ext_resource path="res://res/images/sign.png" type="Texture" id=2]
 [ext_resource path="res://Sign.gd" type="Script" id=3]
 
 [node name="Sign" type="Sprite"]

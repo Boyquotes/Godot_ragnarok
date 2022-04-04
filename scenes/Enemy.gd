@@ -12,7 +12,7 @@ enum state {
 
 var current_state = state.sleep
 var target_near = false
-var target
+var target : PhysicsBody2D
 var direction = 0
 var velocity = Vector2()
 var awake_timer = 0
@@ -29,16 +29,13 @@ onready var hp_bar = $TextureProgress
 
 onready var raycast = $TimeMapRayCast
 onready var hero_raycast = $PlayerRayCast
-func _ready():
-	pass
-	
-func state_check():
+
+func state_check() -> void:
 	if(target_near):
 		if (awake_timer >= 0):
 			current_state = state.awake
 			return
 		var space_state = get_world_2d().direct_space_state
-		var test = collision_mask
 		var result = space_state.intersect_ray(position, target.position, [self], collision_mask + 1)
 		if result:
 			if (result.collider.name == "Player"):
@@ -47,7 +44,7 @@ func state_check():
 				return
 	current_state = state.sleep
 	
-func move():
+func move() -> void:
 	if (abs((position - target.position).x) > 25):
 		if ((position - target.position).x > 0):
 			direction = -1
@@ -64,7 +61,7 @@ func move():
 	if(ray_result):
 		velocity.y = jumpForce
 	
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	state_check()
 	
 	if is_on_floor() && velocity.y > 0:
@@ -79,7 +76,7 @@ func _physics_process(delta):
 	if(player_near):
 		target.hit(damage)
 	
-func _process(delta):
+func _process(delta) -> void:
 	
 	awake_timer -= delta
 	
@@ -92,9 +89,7 @@ func _process(delta):
 			anim_state_machine.travel("Idle")
 			velocity.x = 0
 		state.awake:
-			var test = anim_state_machine.get_current_node()
 			anim_state_machine.travel("Move")
-			test = anim_state_machine.get_current_node()
 			move()
 			
 	if(deleting):
@@ -103,33 +98,31 @@ func _process(delta):
 	pass
 	
 
-func _on_Vision_body_entered(body):
+func _on_Vision_body_entered(body) -> void:
 	if (body.name == "Player"):
 		target_near = true
 		target = body
 
-func _on_Vision_body_exited(body):
+func _on_Vision_body_exited(body) -> void:
 	if (body.name == "Player"):
 		target_near = false
 
-func change_hp(damage):
+func change_hp(damage) -> void:
 	hp -= damage
 	hp_bar.value = hp*100/max_hp
-	var test = anim_state_machine.get_current_node()
 	anim_state_machine.start("Damaged")
-	test = anim_state_machine.get_current_node()
 	if(hp <= 0):
 		deleting = true
 
-func delete():
+func delete() -> void:
 	if(deleting):
 		get_parent().remove_child(self)
 
-func hit(damage):
+func hit(damage) -> void:
 	change_hp(damage)
 		
 
-func _on_htibox_body_entered(body):
+func _on_htibox_body_entered(body) -> void:
 	if "Bullet" in body.name:
 		change_hp(body.damage)
 		body.deleting = true
