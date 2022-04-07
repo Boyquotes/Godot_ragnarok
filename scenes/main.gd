@@ -6,23 +6,33 @@ enum states {
 	game_transition,
 	game_start,
 	game,
-	pause
+	pause,
 }
-var level1 = preload("res://scenes/ElfForest.tscn")
+var level1 = preload("res://scenes/map/ElfForest.tscn")
 var current_level : Node
 
-var main_menu = preload("res://scenes/StartMenu.tscn").instance()
+var main_menu = preload("res://scenes/menu/StartMenu.tscn").instance()
 var current_state = states.menu
 
 func _ready() -> void:
 	add_child(main_menu)
 
 func get_input() -> void:
-	if Input.is_action_just_pressed("Pause") && current_state == states.game:
+	if Input.is_action_just_pressed("Escape") && current_state == states.game:
 		$PauseMenu.set_visible(true)
 		current_state = states.pause
 		get_tree().paused = true
-
+	if Input.is_action_just_pressed("CharMenu") && current_state == states.game:
+		$CharacterMenu.set_visible(true)
+		current_state = states.pause
+		get_tree().paused = true
+	elif (Input.is_action_just_pressed("Escape") ||
+	Input.is_action_just_pressed("CharMenu")) && current_state == states.pause:
+		current_state = states.game
+		$CharacterMenu.set_visible(false)
+		$PauseMenu.set_visible(false)
+		get_tree().paused = false
+	
 func _process(delta) -> void:
 	get_input()
 	

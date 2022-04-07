@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://res/sounds/Level1.mp3" type="AudioStream" id=1]
+[ext_resource path="res://scenes/map/Sign.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/map/TileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/map/Level1Label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/UI/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/UI/ParallaxBackground.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/characters/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/UI/Camera.gd" type="Script" id=9]
+[ext_resource path="res://scenes/bullet/bulletCreator.gd" type="Script" id=10]
+[ext_resource path="res://scenes/UI/Interface.gd" type="Script" id=11]
+
+[node name="ElfForest" type="Node"]
+
+[node name="TileMap" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 256 )
+
+[node name="Interface" type="CanvasLayer" parent="."]
+layer = 0
+script = ExtResource( 11 )
+
+[node name="GUI" parent="Interface" instance=ExtResource( 6 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = -8.0
+margin_bottom = 0.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Level1Label" parent="Interface" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_right = 192.0
+
+[node name="Timer" type="Timer" parent="Interface"]
+one_shot = true
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 96, 160 )
+current = true
+script = ExtResource( 9 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 7 )]
+
+[node name="bulletCreator" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="Sign" parent="." instance=ExtResource( 2 )]
+position = Vector2( -32, 96 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -912, 96 )
+collision_mask = 4
+
+[node name="Enemy" parent="." instance=ExtResource( 8 )]
+position = Vector2( 672, 96 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 1 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="timeout" from="Interface/Timer" to="Interface" method="_on_Timer_timeout"]

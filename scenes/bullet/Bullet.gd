@@ -5,6 +5,11 @@ enum bullet_mask {
 	agressive = 4+1 #wall && player mask group
 }
 
+enum bulletType {
+	normal,
+	big
+}
+
 var time = 0
 var livetime = 5
 var deleting = false
@@ -15,6 +20,7 @@ func _init() -> void:
 	damage = 10
 
 func _ready() -> void:
+	
 	pass
 	
 func _process(delta) -> void:
