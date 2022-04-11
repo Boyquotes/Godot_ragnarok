@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/menu/characterMenu/Stats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://res/menu/MenuBackground.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/menu/characterMenu/CharacterMenu.gd" type="Script" id=3]
+[ext_resource path="res://scenes/menu/characterMenu/InventoryMenu.tscn" type="PackedScene" id=4]
 
 [node name="CharacterMenu" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -28,11 +29,10 @@ stretch_mode = 1
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 312.0
+margin_right = 1232.0
 
 [node name="Stats" parent="Control/TextureRect/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 276.0
+size_flags_horizontal = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/TextureRect/HBoxContainer"]
-margin_left = 296.0
-margin_right = 296.0
-margin_bottom = 672.0
+[node name="Inventory" parent="Control/TextureRect/HBoxContainer" instance=ExtResource( 4 )]

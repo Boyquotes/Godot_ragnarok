@@ -6,6 +6,7 @@ signal attack_speed_changed
 signal bullet_speed_changed
 signal max_hp_changed
 signal bullet_changed
+signal inventory_changed
 
 var speed = 400
 var jump_force = -700
@@ -18,6 +19,7 @@ var max_hp = 100 setget max_hp_changed
 var immunity_timer = 0
 var immunity_time = 1
 
+var inventory = preload("res://resources/inventory.tres")
 #stats
 var damage = 10 setget damage_set
 var attack_speed = 1.0 setget attack_speed_set
@@ -25,6 +27,9 @@ var attack_timer = 0
 var bullet_speed = 300 setget bullet_speed_set
 
 var current_bullet = BulletHandler.normalBullet setget current_bullet_set
+
+func _ready():
+	inventory.connect("item_changed", self, "on_inventory_changed")
 
 func max_hp_change(value):
 	var percent : float = float(hp)/max_hp
@@ -54,3 +59,14 @@ func max_hp_changed(value):
 func current_bullet_set(value):
 	current_bullet = value
 	emit_signal("bullet_changed")
+
+func on_inventory_changed():
+	for i in inventory.slots.size():
+		var slot = inventory.slots[i]
+		if (slot != null):
+			self.max_hp += slot.hp
+			self.bullet_speed += slot.bullet_speed
+			if (slot.attack_speed != 0):
+				self.attack_speed /= slot.attack_speed
+			self.damage += slot.damage
+	emit_signal("inventory_changed")
