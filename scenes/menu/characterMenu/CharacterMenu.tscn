@@ -17,22 +17,29 @@ anchor_bottom = 1.0
 self_modulate = Color( 1, 1, 1, 0.596078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/TextureRect"]
+anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 16.0
-margin_right = 1232.0
+margin_top = 24.0
+margin_right = -16.0
+margin_bottom = -16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Stats" parent="Control/TextureRect/HBoxContainer" instance=ExtResource( 1 )]
-margin_right = 276.0
+margin_bottom = 680.0
+rect_min_size = Vector2( 388, 0 )
 size_flags_horizontal = 1
 
 [node name="Inventory" parent="Control/TextureRect/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 392.0
+margin_right = 1248.0
+margin_bottom = 680.0
+size_flags_horizontal = 3

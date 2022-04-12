@@ -17,25 +17,27 @@ var current_state = states.menu
 func _ready() -> void:
 	add_child(main_menu)
 
+func pause(screen : Node) -> void:
+	screen.set_visible(true)
+	current_state = states.pause
+	get_tree().paused = true
+	
+func unpause() -> void:
+	current_state = states.game
+	$CharacterMenu.set_visible(false)
+	$PauseMenu.set_visible(false)
+	get_tree().paused = false
+	
 func get_input() -> void:
 	if Input.is_action_just_pressed("Escape") && current_state == states.game:
-		$PauseMenu.set_visible(true)
-		current_state = states.pause
-		get_tree().paused = true
+		pause($PauseMenu)
 	if Input.is_action_just_pressed("CharMenu") && current_state == states.game:
-		$CharacterMenu.set_visible(true)
-		current_state = states.pause
-		get_tree().paused = true
+		pause($CharacterMenu)
 	elif (Input.is_action_just_pressed("Escape") ||
 	Input.is_action_just_pressed("CharMenu")) && current_state == states.pause:
-		current_state = states.game
-		$CharacterMenu.set_visible(false)
-		$PauseMenu.set_visible(false)
-		get_tree().paused = false
+		unpause()
 	
-func _process(delta) -> void:
-	get_input()
-	
+func states_update() -> void:
 	match current_state:
 		states.game_start:
 			remove_child(main_menu)
@@ -45,6 +47,10 @@ func _process(delta) -> void:
 		states.menu_start:
 			add_child(main_menu)
 			current_state = states.menu
+	
+func _process(delta) -> void:
+	get_input()
+	states_update()
 
 func _on_TransitionScreen_transitioned() -> void:
 	if (current_state == states.game_transition):

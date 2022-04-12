@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "BaseStats",
+"language": "GDScript",
+"path": "res://scenes/characters/BaseStats.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://scenes/bullet/Bullet.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scenes/characters/Enemy.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -25,6 +40,9 @@ _global_script_classes=[ {
 "path": "res://scenes/characters/inventory/Item.gd"
 } ]
 _global_script_class_icons={
+"BaseStats": "",
+"Bullet": "",
+"Enemy": "",
 "GitAPI": "",
 "Inventory": "",
 "Item": ""
@@ -40,7 +58,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Bullet="*res://scenes/bullet/Bullet.gd"
 BulletHandler="*res://scenes/bullet/bulletHandler.gd"
 PlayerData="*res://scenes/characters/PlayerData.gd"
 

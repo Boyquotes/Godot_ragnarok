@@ -17,7 +17,7 @@ func fire() -> void:
 		bullet_creator.create_current_bullet(position, bullet_direction)
 		PlayerData.attack_timer = PlayerData.attack_speed
 	
-func switch_weapon(bullet) -> void:
+func switch_weapon(bullet : PackedScene) -> void:
 	PlayerData.current_bullet = bullet
 
 func get_input() -> void:
@@ -55,16 +55,16 @@ func animation_update() -> void:
 	elif direction.x == 0:
 		anim_state_machine.travel("Idle")
 	
-func _process(delta) -> void:
+func _process(delta : float) -> void:
 		get_input()
 		if(PlayerData.immunity_timer > 0):
 			PlayerData.immunity_timer -= delta
-		if(PlayerData.attack_timer > 0):
-			PlayerData.attack_timer -= delta
 		elif ($Shield.visible == true):
 			$Shield.visible = false
+		if(PlayerData.attack_timer > 0):
+			PlayerData.attack_timer -= delta
 
-func _physics_process(delta) -> void:
+func _physics_process(delta : float) -> void:
 	
 	if is_on_floor() && velocity.y > 0:
 		PlayerData.jump_counter = 0
@@ -80,19 +80,19 @@ func _physics_process(delta) -> void:
 func kill() -> void:
 	get_tree().reload_current_scene()
 
-func change_hp(damage) -> void:
+func change_hp(damage : int) -> void:
 	PlayerData.hp -= damage
 	if(PlayerData.hp <= 0):
 		kill()
 
-func hit(damage) -> void:
+func hit(damage : int) -> void:
 	if(PlayerData.immunity_timer <= 0):
 		change_hp(damage)
 		PlayerData.immunity_timer = PlayerData.immunity_time
 		immune_amin.play("shield_idle")
 		$Shield.visible = true
 
-func _on_Area2D_body_entered(body) -> void:
+func _on_Area2D_body_entered(body : PhysicsBody2D) -> void:
 	if "Bullet" in body.name:
 		hit(body.damage)
 		body.deleting = true
