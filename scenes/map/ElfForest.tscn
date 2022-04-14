@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://res/sounds/Level1.mp3" type="AudioStream" id=1]
 [ext_resource path="res://scenes/map/Sign.tscn" type="PackedScene" id=2]
@@ -11,8 +11,10 @@
 [ext_resource path="res://scenes/UI/Camera.gd" type="Script" id=9]
 [ext_resource path="res://scenes/bullet/bulletCreator.gd" type="Script" id=10]
 [ext_resource path="res://scenes/UI/Interface.gd" type="Script" id=11]
+[ext_resource path="res://scenes/map/ElfForest.gd" type="Script" id=12]
 
 [node name="ElfForest" type="Node"]
+script = ExtResource( 12 )
 
 [node name="TileMap" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 256 )
@@ -64,7 +66,6 @@ position = Vector2( 672, 96 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 1 )
-volume_db = -15.0
 autoplay = true
 
 [connection signal="timeout" from="Interface/Timer" to="Interface" method="_on_Timer_timeout"]

@@ -39,6 +39,18 @@ var points = 3 setget points_set
 func _ready():
 	inventory.connect("item_changed", self, "on_inventory_changed")
 
+func emit_all_signals() -> void:
+	emit_signal("hp_changed")
+	emit_signal("damage_changed")
+	emit_signal("attack_speed_changed")
+	emit_signal("bullet_speed_changed")
+	emit_signal("max_hp_changed")
+	emit_signal("bullet_changed")
+	emit_signal("inventory_changed")
+	emit_signal("xp_changed")
+	emit_signal("lvl_changed")
+	emit_signal("points_changed")
+
 func max_hp_change(value : int) -> void:
 	var percent : float = float(hp)/max_hp
 	self.max_hp += value

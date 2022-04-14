@@ -29,13 +29,13 @@ func unpause() -> void:
 	get_tree().paused = false
 	
 func get_input() -> void:
+	if (Input.is_action_just_pressed("Escape") ||
+		Input.is_action_just_pressed("CharMenu")) && current_state == states.pause:
+		unpause()
 	if Input.is_action_just_pressed("Escape") && current_state == states.game:
 		pause($PauseMenu)
 	if Input.is_action_just_pressed("CharMenu") && current_state == states.game:
 		pause($CharacterMenu)
-	elif (Input.is_action_just_pressed("Escape") ||
-	Input.is_action_just_pressed("CharMenu")) && current_state == states.pause:
-		unpause()
 	
 func states_update() -> void:
 	match current_state:

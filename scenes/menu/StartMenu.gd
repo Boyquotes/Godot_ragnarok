@@ -8,7 +8,8 @@ func _on_Start_pressed() -> void:
 	layer = -1
 
 func _on_Settings_pressed() -> void:
-	pass # Replace with function body.
+	get_parent().add_child(load("res://scenes/menu/Settings.tscn").instance())
+	get_parent().remove_child(self)
 
 
 func _on_Quit_pressed() -> void:
