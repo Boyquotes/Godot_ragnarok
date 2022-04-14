@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/bullet/Bullet.gd"
 }, {
+"base": "Resource",
+"class": "Config",
+"language": "GDScript",
+"path": "res://scenes/Config.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
@@ -42,6 +47,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BaseStats": "",
 "Bullet": "",
+"Config": "",
 "Enemy": "",
 "GitAPI": "",
 "Inventory": "",

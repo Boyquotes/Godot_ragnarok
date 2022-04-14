@@ -15,6 +15,8 @@ var main_menu = preload("res://scenes/menu/StartMenu.tscn").instance()
 var current_state = states.menu
 
 func _ready() -> void:
+	var config : Config = load("res://resources/config.tres")
+	config.apply_config()
 	add_child(main_menu)
 
 func pause(screen : Node) -> void:
@@ -29,13 +31,15 @@ func unpause() -> void:
 	get_tree().paused = false
 	
 func get_input() -> void:
-	if (Input.is_action_just_pressed("Escape") ||
-		Input.is_action_just_pressed("CharMenu")) && current_state == states.pause:
-		unpause()
-	if Input.is_action_just_pressed("Escape") && current_state == states.game:
-		pause($PauseMenu)
-	if Input.is_action_just_pressed("CharMenu") && current_state == states.game:
-		pause($CharacterMenu)
+	if (current_state == states.pause):
+		if(Input.is_action_just_pressed("Escape") ||
+		Input.is_action_just_pressed("CharMenu")):
+			unpause()
+	elif(current_state == states.game):
+		if(Input.is_action_just_pressed("Escape")):
+			pause($PauseMenu)
+		if(Input.is_action_just_pressed("CharMenu")):
+			pause($CharacterMenu)
 	
 func states_update() -> void:
 	match current_state:
