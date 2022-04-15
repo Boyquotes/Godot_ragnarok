@@ -10,6 +10,7 @@ signal inventory_changed
 signal xp_changed
 signal lvl_changed
 signal points_changed
+signal interaction
 
 var speed = 400
 var jump_force = -700
@@ -35,6 +36,8 @@ var lvl = 1 setget lvl_set
 var xp = 0 setget xp_set
 var needed_xp = 250
 var points = 3 setget points_set
+
+var interacted : bool = false
 
 func _ready():
 	inventory.connect("item_changed", self, "on_inventory_changed")

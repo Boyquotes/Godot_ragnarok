@@ -48,4 +48,13 @@ icon = ExtResource( 2 )
 flat = true
 script = ExtResource( 4 )
 
+[node name="Button2" type="Button" parent="ColorRect/VBoxContainer/ItemButtons"]
+margin_left = 48.0
+margin_right = 92.0
+margin_bottom = 38.0
+icon = ExtResource( 2 )
+flat = true
+script = ExtResource( 4 )
+
 [connection signal="pressed" from="ColorRect/VBoxContainer/ItemButtons/Button1" to="." method="_on_Button1_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ItemButtons/Button2" to="." method="_on_Button2_pressed"]

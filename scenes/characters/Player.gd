@@ -46,6 +46,9 @@ func get_input() -> void:
 			switch_weapon(BulletHandler.bigBullet)
 		else:
 			switch_weapon(BulletHandler.normalBullet)
+			
+	if Input.is_action_just_pressed("Interaction"):
+		PlayerData.emit_signal("interaction")
 	
 func animation_update() -> void:
 	if direction.x != 0:

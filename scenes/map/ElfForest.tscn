@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://res/sounds/Level1.mp3" type="AudioStream" id=1]
 [ext_resource path="res://scenes/map/Sign.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scenes/bullet/bulletCreator.gd" type="Script" id=10]
 [ext_resource path="res://scenes/UI/Interface.gd" type="Script" id=11]
 [ext_resource path="res://scenes/map/ElfForest.gd" type="Script" id=12]
+[ext_resource path="res://scenes/map/Chest.tscn" type="PackedScene" id=13]
+[ext_resource path="res://resources/shoes.tres" type="Resource" id=14]
 
 [node name="ElfForest" type="Node"]
 script = ExtResource( 12 )
@@ -67,5 +69,10 @@ position = Vector2( 672, 96 )
 pause_mode = 2
 stream = ExtResource( 1 )
 autoplay = true
+
+[node name="Chest" parent="." instance=ExtResource( 13 )]
+position = Vector2( -808, 112 )
+xp = 750
+items = [ ExtResource( 14 ) ]
 
 [connection signal="timeout" from="Interface/Timer" to="Interface" method="_on_Timer_timeout"]
